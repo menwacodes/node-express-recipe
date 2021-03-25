@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title><%= recipe.name; %></title>
+</head>
+<body>
+<h1><%= recipe.name; %></h1>
+<h2>Ingredients go here</h2>
+
+<% if (recipe.prepBowls.length) { %>
+    <h2>Prep Bowls</h2>
+    <ul>
+        <% for (let bowl of recipe.prepBowls) { %>
+            <li><%= bowl; %></li>
+        <% } %>
+    </ul>
+<% } %>
+
+<h2>Info</h2>
+<div>
+    <% if (recipe.prepTime) { %> <span>Prep Time: <%= recipe.prepTime; %> min, </span>
+    <% } %>
+
+    <% if (recipe.cookTime) { %> <span> <%= recipe.course === 'Breads' ? 'Bake' : 'Cook' %> Time: <%= recipe.cookTime; %> min, </span>
+    <% } %>
+
+    <% if (recipe.activeTime) { %> <span>Active Time: <%= recipe.activeTime; %> min, </span>
+    <% } %>
+
+    <% if (recipe.marinateTime) { %> <span>Marinate Time: <%= recipe.marinateTime; %> min, </span>
+    <% } %>
+
+    <% if (recipe.course === 'Breads' && recipe.totalRiseTime) {%>
+        <span>Total Rise Time: <%= recipe.totalRiseTime; %> min
+    <% } %>
+
+
+</div>
+
+<h2>Directions</h2>
+<ul>
+    <% for (let direction of recipe.directions) { %>
+        <li><%= direction; %></li>
+    <% } %>
+</ul>
+
+<% if (recipe.specialEquipment.length) { %>
+    <h2>Special Equipment</h2>
+    <ul>
+        <% for (let equipment of recipe.specialEquipment) { %>
+            <li><%= equipment; %></li>
+        <% } %>
+    </ul>
+<% } %>
+
+<% if (recipe.notes.length) { %>
+    <h2>Notes</h2>
+    <ul>
+        <% for (let note of recipe.notes) { %>
+            <li><%= note; %></li>
+        <% } %>
+    </ul>
+<% } %>
+
+<h2>Attribution</h2>
+<div>
+    <p>From: <%= recipe.from; %></p>
+    <p>Chef: <%= recipe.attribution; %></p>
+</div>
+
+
+</body>
+</html>
+

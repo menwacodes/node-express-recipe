@@ -7,7 +7,7 @@ module.exports.recipes = [
         prepTime: 15,
         cookTime: 10,
         activeTime: 25,
-        marinateTime: 0,
+        marinateTime: 20,
         from: "https://www.seriouseats.com/recipes/2011/07/real-deal-mapo-dofu-tofu-chinese-sichuan-recipe.html",
         attribution: 'J. Kenji López-Alt',
         prepBowls: [
@@ -157,7 +157,7 @@ module.exports.recipes = [
         prepTime: 30,
         cookTime: 17,
         activeTime: 30,
-        totalRiseTime: 4,
+        totalRiseTime: 240,
         from: "https://www.theclevercarrot.com/2013/05/light-brioche-hamburger-buns/",
         attribution: 'Emilie Raffa',
         doughDirections: [

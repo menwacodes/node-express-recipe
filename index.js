@@ -4,6 +4,7 @@ const path = require('path')
 
 /* START: Express set up */
 const express = require('express')
+const Recipe = require("./models/recipe");
 const app = express()
 const port = 3000
 
@@ -11,6 +12,9 @@ const port = 3000
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true})) // remove if not using form
+
+// assets
+app.use(express.static(path.join(__dirname, 'public')))
 
 /* local set up */
 const mURL = 'mongodb://localhost:27017/'
@@ -32,9 +36,24 @@ connect();
 
 /* END: Mongoose set up */
 
-// test setup
-app.get('/', (req, res)=> {
-    res.send('Hello World!')
+// RECIPE ROUTES
+// redirect for '/'
+app.get('/', (req, res) => {
+    res.redirect('/recipes')
 })
+
+// Index
+app.get('/recipes', async (req, res)=> {
+    const recipes = await Recipe.find({})
+    res.render('recipes/index', {recipes})
+})
+
+// Show
+app.get('/recipes/:id', async (req, res) => {
+    const {id} = req.params;
+    const recipe = await Recipe.findById(id)
+    res.render('recipes/show',{recipe})
+})
+
 
 app.listen(port, ()=>console.log(chalk.greenBright(`Listening on http://localhost:${port}`)))
