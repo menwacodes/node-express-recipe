@@ -18,7 +18,8 @@ const recipeSchema = new Schema({
     marinateTime: Number,
     totalRiseTime: Number,
     activeTime: Number, // Virtualize total time
-    from: String, // Recipe source: could be URL or book, etc
+    from: String, // Recipe source: could be website name or book, etc
+    fromURL: String, // If website, this is the URL
     attribution: String, // author of recipe
     ingredients: [
         {type: Schema.Types.ObjectId, ref: 'Ingredient'}
@@ -29,6 +30,8 @@ const recipeSchema = new Schema({
     notes: [String]
 
 });
+
+
 
 // Create Model
 const Recipe = mongoose.model('Recipe', recipeSchema);

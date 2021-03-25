@@ -8,9 +8,11 @@
     <h1>Recipes</h1>
     <ul>
       <% for (let recipe of recipes) { %>
-          <li><%= recipe.name %></li>
+          <li><a href="/recipes/<%=recipe._id%>"><%= recipe.name %></a></li>
       <% } %>
     </ul>
+
+    <a href="/recipes/new">Add Recipe</a>
 
   </body>
 </html>

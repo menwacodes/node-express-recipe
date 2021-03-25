@@ -8,7 +8,8 @@ module.exports.recipes = [
         cookTime: 10,
         activeTime: 25,
         marinateTime: 20,
-        from: "https://www.seriouseats.com/recipes/2011/07/real-deal-mapo-dofu-tofu-chinese-sichuan-recipe.html",
+        from: 'Serious Eats',
+        fromURL: "https://www.seriouseats.com/recipes/2011/07/real-deal-mapo-dofu-tofu-chinese-sichuan-recipe.html",
         attribution: 'J. Kenji López-Alt',
         prepBowls: [
             "3 cloves garlic & 1 tbsp ginger",
@@ -41,7 +42,8 @@ module.exports.recipes = [
         cookTime: 17,
         activeTime: 30,
         totalRiseTime: 80,
-        from: "https://www.inspiredtaste.net/19313/easy-focaccia-bread-recipe-with-herbs/",
+        from: 'Inspired Taste',
+        fromURL: "https://www.inspiredtaste.net/19313/easy-focaccia-bread-recipe-with-herbs/",
         attribution: 'Adam',
         prepBowls: [
             "1/2 cup olive oil, 2 minced garlic cloves, 1 tsp dried thyme, 1 tsp dried, chopped rosemary, 1/4 tsp ground pepper",
@@ -86,7 +88,8 @@ module.exports.recipes = [
         prepTime: 10,
         activeTime: 14,
         cookTime: 45,
-        from: "https://www.delish.com/cooking/recipe-ideas/a23014857/classic-stuffed-peppers-recipe/",
+        from: "delish",
+        fromURL: "https://www.delish.com/cooking/recipe-ideas/a23014857/classic-stuffed-peppers-recipe/",
         attribution: 'Rian Handler',
         directions: [
             "Preheat oven to 400°. In a small saucepan, prepare rice according to package instructions.",
@@ -158,7 +161,8 @@ module.exports.recipes = [
         cookTime: 17,
         activeTime: 30,
         totalRiseTime: 240,
-        from: "https://www.theclevercarrot.com/2013/05/light-brioche-hamburger-buns/",
+        from: "The Clever Carrot",
+        fromURL: "https://www.theclevercarrot.com/2013/05/light-brioche-hamburger-buns/",
         attribution: 'Emilie Raffa',
         doughDirections: [
             "Whisk warm water, milk, yeast, sugar",

@@ -16,6 +16,10 @@ app.use(express.urlencoded({extended: true})) // remove if not using form
 // assets
 app.use(express.static(path.join(__dirname, 'public')))
 
+// enums
+const coursesArray = Recipe.schema.path('course').enumValues
+
+
 /* local set up */
 const mURL = 'mongodb://localhost:27017/'
 const mDB = 'recipe'
@@ -48,6 +52,11 @@ app.get('/recipes', async (req, res)=> {
     res.render('recipes/index', {recipes})
 })
 
+// New (form)
+app.get('/recipes/new', (req, res) => {
+    res.render('recipes/new', {coursesArray})
+})
+
 // Show
 app.get('/recipes/:id', async (req, res) => {
     const {id} = req.params;
@@ -55,5 +64,17 @@ app.get('/recipes/:id', async (req, res) => {
     res.render('recipes/show',{recipe})
 })
 
+// Create
+app.post('/recipes', async (req, res, next) => {
+    // content from text areas: use .split('\r\n') to make an array, then map and push
+    const newRecipe = new Recipe(req.body)
+    let dirs = req.body.directions.split('\r\n')
+    if (req.body.prepBowls) newRecipe.prepBowls = req.body.prepBowls.split('\r\n')
+    if (req.body.directions) newRecipe.directions = req.body.directions.split('\r\n')
+    if (req.body.specialEquipment) newRecipe.specialEquipment = req.body.specialEquipment.split('\r\n')
+    if (req.body.notes) newRecipe.notes = req.body.notes.split('\r\n')
+    const data = await newRecipe.save()
+    res.redirect(`/recipes/${newRecipe._id}`)
+})
 
 app.listen(port, ()=>console.log(chalk.greenBright(`Listening on http://localhost:${port}`)))
