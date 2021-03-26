@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const chalk = require('chalk');
 const path = require('path');
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
 
 /* START: Express set up */
 const express = require('express');
@@ -18,7 +18,7 @@ app.use(express.urlencoded({extended: true})); // remove if not using form
 app.use(express.static(path.join(__dirname, 'public')));
 
 // method override
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
 
 // enums
 const coursesArray = Recipe.schema.path('course').enumValues;
@@ -120,18 +120,18 @@ app.get('/recipes/:id/edit', async (req, res) => {
     const recipe = await Recipe.findById(id);
 
     // convert stored array into text area presentable
-    recipe.prepBowls = recipeArrayToTextArea(recipe.prepBowls)
-    recipe.directions = recipeArrayToTextArea(recipe.directions)
-    recipe.specialEquipment = recipeArrayToTextArea(recipe.specialEquipment)
-    recipe.notes = recipeArrayToTextArea(recipe.notes)
+    recipe.prepBowls = recipeArrayToTextArea(recipe.prepBowls);
+    recipe.directions = recipeArrayToTextArea(recipe.directions);
+    recipe.specialEquipment = recipeArrayToTextArea(recipe.specialEquipment);
+    recipe.notes = recipeArrayToTextArea(recipe.notes);
     res.render('recipes/edit', {recipe, coursesArray});
 });
 
 // Update Recipe
 app.put('/recipes/:id', async (req, res) => {
-    const {id} = req.params
+    const {id} = req.params;
     // Find the Recipe
-    const recipe = await Recipe.findById(id)
+    const recipe = await Recipe.findById(id);
 
     // Update the array fields
     // account for empty entries
@@ -141,9 +141,16 @@ app.put('/recipes/:id', async (req, res) => {
     recipe.notes = recipeTextAreaToArray(req.body.notes);
 
     // Save Recipe
-    await recipe.save()
+    await recipe.save();
 
-    res.redirect(`/recipes/${recipe._id}`)
-})
+    res.redirect(`/recipes/${recipe._id}`);
+});
+
+// Delete Recipe
+app.delete('/recipes/:id', async (req, res) => {
+    const {id} = req.params;
+    await Recipe.findByIdAndDelete(id)
+    res.redirect('/recipes')
+});
 
 app.listen(port, () => console.log(chalk.greenBright(`Listening on http://localhost:${port}`)));
