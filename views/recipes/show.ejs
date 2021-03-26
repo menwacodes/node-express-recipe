@@ -10,7 +10,17 @@
 </head>
 <body>
 <h1><%= recipe.name; %></h1>
-<h2>Ingredients go here</h2>
+<h2>Ingredients</h2>
+<ul>
+    <% for (let ingredient of recipe.ingredients) { %>
+        <li>
+            <span><%= ingredient.amount %></span>
+            <span><%= ingredient.measure %></span>
+            <span><%= ingredient.prep %></span>
+            <span><%= ingredient.ingredient %></span>
+        </li>
+    <% } %>
+</ul>
 
 <% if (recipe.prepBowls.length) { %>
     <h2>Prep Bowls</h2>

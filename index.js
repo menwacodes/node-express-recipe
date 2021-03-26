@@ -76,7 +76,7 @@ app.get('/recipes/new', (req, res) => {
 // Show
 app.get('/recipes/:id', async (req, res) => {
     const {id} = req.params;
-    const recipe = await Recipe.findById(id);
+    const recipe = await Recipe.findById(id).populate('ingredients');
     res.render('recipes/show', {recipe});
 });
 
