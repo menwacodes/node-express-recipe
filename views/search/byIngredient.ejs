@@ -1,0 +1,12 @@
+<% layout ('layouts/index')%>
+
+<h1>Search Results</h1>
+
+<ul>
+    <% for (let result of results) { %>
+        <li><a href="/recipes/<%= result.recipe._id %>"><%= result.recipe.name %></a></li>
+    <% } %>
+</ul>
+
+</body>
+</html>

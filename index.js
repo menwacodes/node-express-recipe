@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const chalk = require('chalk');
 const path = require('path');
 const methodOverride = require('method-override');
+const ejsMate = require('ejs-mate')
 
 /* START: Express set up */
 const express = require('express');
@@ -11,6 +12,7 @@ const app = express();
 const port = 3000;
 
 // view engine setup
+app.engine('ejs', ejsMate)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true})); // remove if not using form
@@ -184,5 +186,15 @@ app.delete('/recipes/:recipeId/ingredients/:ingredientId', async (req, res) => {
 
     res.redirect(`/recipes/${recipeId}/ingredients/new`);
 });
+
+// SEARCH ROUTES
+// Find by Ingredient
+app.post('/search/ingredient', async (req, res) => {
+    // const {ingredient} = req.params;
+    const {search} = req.body
+    const results = await Ingredient.findByIngredient(search)
+    console.log(results)
+    res.render('search/byIngredient', {results})
+})
 
 app.listen(port, () => console.log(chalk.greenBright(`Listening on http://localhost:${port}`)));

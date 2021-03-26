@@ -13,6 +13,10 @@ const ingredientSchema = new Schema({
     }
 });
 
+ingredientSchema.statics.findByIngredient = function (ingredient){
+    return this.find({ingredient: new RegExp(ingredient, 'i')}, 'recipe').populate({path:'recipe', select: ['name']})
+}
+
 const Ingredient = mongoose.model('Ingredient', ingredientSchema);
 
 module.exports = Ingredient;
