@@ -218,6 +218,26 @@ module.exports.recipes = [
             "Bench scraper - a chef's knife or thin metal spatula if not"
         ]
     },
+    {
+        slug: "spicy-mushrooms",
+        name: "Spicy Mushrooms",
+        yield: "4 servings",
+        course: "Sides",
+        prepTime: 10,
+        cookTime: 5,
+        activeTime: 15,
+        from: "What's Cooking Chinese",
+        attribution: 'Jenny Stacey',
+        directions: [
+            "Heat the oil in a preheated wok until almost smoking. Reduce heat slightly and add garlic and scallions to stir-fry for 30 seconds.",
+            "Add the mushrooms, Chile sauce, soy sauce, hoisin sauce, vinegar, pepper, and sugar and stir-fry for 4-5 min to cook mushrooms.",
+            "Sprinkle the sesame oil on top. Transfer to serving dish.",
+
+        ],
+        specialEquipment: [
+            "Wok",
+        ]
+    },
 ];
 
 /*

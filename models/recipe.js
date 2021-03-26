@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify')
+
 
 const {Schema} = mongoose;
 
@@ -31,7 +33,11 @@ const recipeSchema = new Schema({
 
 });
 
+// Middleware
+recipeSchema.pre("save",  function(){
+    this.slug = slugify(this.name, {lower: true})
 
+})
 
 // Create Model
 const Recipe = mongoose.model('Recipe', recipeSchema);

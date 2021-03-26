@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Recipe</title>
+</head>
+<body>
+<h1>Edit: <%= recipe.name %></h1>
+
+<form action="/recipes/<%= recipe._id%>?_method=PUT" method="post">
+    <div>
+        <label for="name">Recipe Name</label>
+        <input type="text" id="name" name="name" placeholder="recipe name" value="<%= recipe.name %>">
+    </div>
+    <div>
+        <label for="yield">Yield</label>
+        <input type="text" id="yield" name="yield" placeholder="(4 servings, 1L, etc)" value="<%= recipe.yield %>">
+    </div>
+    <div>
+        <label for="course">Course</label>
+        <select name="course" id="course">
+            <% for (let course of coursesArray) { %>
+                <option value="<%= course; %>" <%= recipe.course === course && 'selected' %>> <%= course; %> </option>
+            <% } %>
+        </select>
+    </div>
+    <div>
+        <label for="marinateTime">Marinate Time</label>
+        <input type="number" id="marinateTime" name="marinateTime" placeholder="(mins)" value="<%= recipe.marinateTime %>">
+    </div>
+    <div>
+        <label for="prepTime">Prep Time</label>
+        <input type="number" id="prepTime" name="prepTime" placeholder="(mins)" value="<%= recipe.prepTime %>">
+    </div>
+    <div>
+        <label for="cookTime">Cook Time</label>
+        <input type="number" id="cookTime" name="cookTime" placeholder="(mins)" value="<%= recipe.cookTime %>">
+    </div>
+    <div>
+        <label for="riseTime">Rise Time</label>
+        <input type="number" id="riseTime" name="riseTime" placeholder="(for baking, in mins)" value="<%= recipe.totalRiseTime %>">
+    </div>
+    <div>
+        <label for="activeTime">Active Time</label>
+        <input type="number" id="activeTime" name="activeTime" placeholder="(mins)" value="<%= recipe.activeTime %>">
+    </div>
+    <div>
+        <label for="from">From</label>
+        <input type="text" id="from" name="from" placeholder="(website/cookbook)" value="<%= recipe.from %>">
+    </div>
+    <div>
+        <label for="fromURL">From URL</label>
+        <input type="text" id="fromURL" name="fromURL" placeholder="(if website, this is URL)" value="<%= recipe.fromURL %>">
+    </div>
+    <div>
+        <label for="attribution">Attribution</label>
+        <input type="text" id="attribution" name="attribution" placeholder="(chef/author/blank if same as From)" value="<%= recipe.attribution %>">
+    </div>
+
+    <div>
+        <label for="prepBowls">Prep Bowls</label>
+        <textarea name="prepBowls" id="prepBowls" cols="30" rows="10"><%= recipe.prepBowls %></textarea>
+    </div>
+    <div>
+        <label for="directions">Directions</label>
+        <textarea name="directions" id="directions" cols="30" rows="10"><%= recipe.directions %></textarea>
+    </div>
+    <div>
+        <label for="specialEquipment">Special Equipment</label>
+        <textarea name="specialEquipment" id="specialEquipment" cols="30" rows="10"><%= recipe.specialEquipment %></textarea>
+    </div>
+    <div>
+        <label for="notes">Notes</label>
+        <textarea name="notes" id="notes" cols="30" rows="10"><%= recipe.notes %></textarea>
+    </div>
+
+    <button>Update Recipe</button>
+</form>
+
+</body>
+</html>
