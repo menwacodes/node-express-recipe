@@ -4,8 +4,29 @@
     <title>Ingredient</title>
 </head>
 <body>
-<h1>Add Ingrdient</h1>
 
+<h1>Ingredients</h1>
+
+<h2>Current Ingredients</h2>
+<ul>
+    <% for (let ingredient of ingredients) { %>
+        <li>
+            <span><%= ingredient.amount %></span>
+            <span><%= ingredient.measure %></span>
+            <span><%= ingredient.prep %></span>
+            <span><%= ingredient.ingredient %></span>
+            <form
+                    style="display: inline"
+                    action="/recipes/<%= recipeId ;%>/ingredients/<%= ingredient._id ;%>?_method=DELETE"
+                    method="post"
+            >
+                <button>Delete</button>
+            </form>
+        </li>
+    <% } %>
+</ul>
+
+<h2>Add Ingrdient</h2>
 <form action="/recipes/<%= recipeId ;%>/ingredients" method="post">
     <div>
         <label for="amount">Amount:</label>
@@ -26,6 +47,8 @@
 
     <button>Add Ingredient</button>
 </form>
+
+<a href="/recipes/<%= recipeId %>">Back to Recipe</a>
 
 </body>
 </html>

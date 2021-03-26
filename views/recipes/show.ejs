@@ -10,26 +10,6 @@
 </head>
 <body>
 <h1><%= recipe.name; %></h1>
-<h2>Ingredients</h2>
-<ul>
-    <% for (let ingredient of recipe.ingredients) { %>
-        <li>
-            <span><%= ingredient.amount %></span>
-            <span><%= ingredient.measure %></span>
-            <span><%= ingredient.prep %></span>
-            <span><%= ingredient.ingredient %></span>
-        </li>
-    <% } %>
-</ul>
-
-<% if (recipe.prepBowls.length) { %>
-    <h2>Prep Bowls</h2>
-    <ul>
-        <% for (let bowl of recipe.prepBowls) { %>
-            <li><%= bowl; %></li>
-        <% } %>
-    </ul>
-<% } %>
 
 <h2>Info</h2>
 <div>
@@ -53,9 +33,30 @@
     <span>Total Rise Time: <%= recipe.totalRiseTime; %> min
         <% } %>
     </span>
-
-
 </div>
+
+<h2>Ingredients</h2>
+<ul>
+    <% for (let ingredient of recipe.ingredients) { %>
+        <li>
+            <span><%= ingredient.amount %></span>
+            <span><%= ingredient.measure %></span>
+            <span><%= ingredient.prep %></span>
+            <span><%= ingredient.ingredient %></span>
+        </li>
+    <% } %>
+</ul>
+
+
+<% if (recipe.prepBowls.length) { %>
+    <h2>Prep Bowls</h2>
+    <ul>
+        <% for (let bowl of recipe.prepBowls) { %>
+            <li><%= bowl; %></li>
+        <% } %>
+    </ul>
+<% } %>
+
 
 <h2>Directions</h2>
 <ol>
@@ -99,7 +100,7 @@
 
 <a href="/recipes">Back to Recipes</a>
 <a href="/recipes/<%= recipe._id%>/edit">Edit Recipe</a>
-<a href="/recipes/<%= recipe._id%>/ingredients/new">Add Ingredient</a>
+<a href="/recipes/<%= recipe._id%>/ingredients/new">Manage Ingredients</a>
 
 <form action="/recipes/<%= recipe._id %>?_method=DELETE" method="post">
     <button>Delete Recipe</button>

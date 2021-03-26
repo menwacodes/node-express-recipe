@@ -95,17 +95,6 @@ app.post('/recipes', async (req, res, next) => {
     const data = await newRecipe.save();
     res.redirect(`/recipes/${newRecipe._id}`);
 
-    // ToDo: Delete this section of comments when saving a recipe is verified good
-    // if (req.body.prepBowls.length > 0) {
-    //     newRecipe.prepBowls = req.body.prepBowls.split('\r\n');
-    // } else {
-    //     newRecipe.prepBowls = undefined
-    // }
-    // if (req.body.directions.length > 0) newRecipe.directions = req.body.directions.split('\r\n')
-    // if (req.body.specialEquipment.length > 0) newRecipe.specialEquipment = req.body.specialEquipment.split('\r\n')
-    // if (req.body.specialEquipment.length > 0) newRecipe.specialEquipment = req.body.specialEquipment.split('\r\n')
-    // if (req.body.notes.length === 0) newRecipe.notes = undefined
-    // res.send(newRecipe)
 });
 
 const recipeArrayToTextArea = recipeArr => {
@@ -150,37 +139,50 @@ app.put('/recipes/:id', async (req, res) => {
 // Delete Recipe
 app.delete('/recipes/:id', async (req, res) => {
     const {id} = req.params;
-    await Recipe.findByIdAndDelete(id)
-    res.redirect('/recipes')
+    await Recipe.findByIdAndDelete(id);
+    res.redirect('/recipes');
 });
 
 // INGREDIENT ROUTES
 // Create Ingredient Form
-app.get('/recipes/:recipeId/ingredients/new', (req, res) => {
-    const {recipeId} = req.params
-    // res.send(recipeId)
-    res.render('ingredients/new.ejs', {recipeId})
-})
+app.get('/recipes/:recipeId/ingredients/new', async (req, res) => {
+    const {recipeId} = req.params;
+    const recipe = await Recipe.findById(recipeId).populate('ingredients');
+    // res.send({ingredients: recipe.ingredients, recipeId})
+    res.render('ingredients/new.ejs', {ingredients: recipe.ingredients, recipeId});
+});
 
 // Create Ingredient
 app.post('/recipes/:recipeId/ingredients', async (req, res) => {
     // Get Recipe
-    const {recipeId} = req.params
-    const recipe = await Recipe.findById(recipeId)
+    const {recipeId} = req.params;
+    const recipe = await Recipe.findById(recipeId);
 
     // Get Ingredients from form and create object
-    const {amount, measure, prep, ingredient} = req.body
-    const newIngredient = new Ingredient({amount, measure, prep, ingredient})
+    const {amount, measure, prep, ingredient} = req.body;
+    const newIngredient = new Ingredient({amount, measure, prep, ingredient});
 
     // Two way association
-    recipe.ingredients.push(newIngredient)
-    newIngredient.recipe = recipe
+    recipe.ingredients.push(newIngredient);
+    newIngredient.recipe = recipe;
 
     // Save recipe and ingredient
-    await recipe.save()
-    await newIngredient.save()
+    await recipe.save();
+    await newIngredient.save();
 
-    res.redirect(`/recipes/${recipe._id}`)
-})
+    res.redirect(`/recipes/${recipe._id}/ingredients/new`);
+});
+
+// Delete Ingredient
+app.delete('/recipes/:recipeId/ingredients/:ingredientId', async (req, res) => {
+    const {recipeId, ingredientId} = req.params;
+    // delete from recipe
+    await Recipe.findByIdAndUpdate(recipeId, {$pull: {ingredients: ingredientId}});
+
+    // delete from ingredients
+    await Ingredient.findByIdAndDelete(ingredientId);
+
+    res.redirect(`/recipes/${recipeId}/ingredients/new`);
+});
 
 app.listen(port, () => console.log(chalk.greenBright(`Listening on http://localhost:${port}`)));
