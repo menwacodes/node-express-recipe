@@ -6,6 +6,7 @@ const methodOverride = require('method-override');
 /* START: Express set up */
 const express = require('express');
 const Recipe = require("./models/recipe");
+const Ingredient = require("./models/ingredient");
 const app = express();
 const port = 3000;
 
@@ -152,5 +153,34 @@ app.delete('/recipes/:id', async (req, res) => {
     await Recipe.findByIdAndDelete(id)
     res.redirect('/recipes')
 });
+
+// INGREDIENT ROUTES
+// Create Ingredient Form
+app.get('/recipes/:recipeId/ingredients/new', (req, res) => {
+    const {recipeId} = req.params
+    // res.send(recipeId)
+    res.render('ingredients/new.ejs', {recipeId})
+})
+
+// Create Ingredient
+app.post('/recipes/:recipeId/ingredients', async (req, res) => {
+    // Get Recipe
+    const {recipeId} = req.params
+    const recipe = await Recipe.findById(recipeId)
+
+    // Get Ingredients from form and create object
+    const {amount, measure, prep, ingredient} = req.body
+    const newIngredient = new Ingredient({amount, measure, prep, ingredient})
+
+    // Two way association
+    recipe.ingredients.push(newIngredient)
+    newIngredient.recipe = recipe
+
+    // Save recipe and ingredient
+    await recipe.save()
+    await newIngredient.save()
+
+    res.redirect(`/recipes/${recipe._id}`)
+})
 
 app.listen(port, () => console.log(chalk.greenBright(`Listening on http://localhost:${port}`)));

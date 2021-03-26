@@ -89,6 +89,8 @@
 
 <a href="/recipes">Back to Recipes</a>
 <a href="/recipes/<%= recipe._id%>/edit">Edit Recipe</a>
+<a href="/recipes/<%= recipe._id%>/ingredients/new">Add Ingredient</a>
+
 <form action="/recipes/<%= recipe._id %>?_method=DELETE" method="post">
     <button>Delete Recipe</button>
 </form>

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const slugify = require('slugify')
+const slugify = require('slugify');
 
 
 const {Schema} = mongoose;
@@ -24,8 +24,11 @@ const recipeSchema = new Schema({
     fromURL: String, // If website, this is the URL
     attribution: String, // author of recipe
     ingredients: [
-        {type: Schema.Types.ObjectId, ref: 'Ingredient'}
-        ],
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Ingredient'
+        }
+    ],
     prepBowls: [String],
     directions: [String],
     specialEquipment: [String],
@@ -34,12 +37,12 @@ const recipeSchema = new Schema({
 });
 
 // Middleware
-recipeSchema.pre("save",  function(){
-    this.slug = slugify(this.name, {lower: true})
+recipeSchema.pre("save", function () {
+    this.slug = slugify(this.name, {lower: true});
 
-})
+});
 
 // Create Model
 const Recipe = mongoose.model('Recipe', recipeSchema);
 
-module.exports = Recipe
+module.exports = Recipe;
