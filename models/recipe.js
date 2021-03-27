@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
+const Ingredient = require("./ingredient");
 
 
 const {Schema} = mongoose;
@@ -37,10 +38,17 @@ const recipeSchema = new Schema({
 });
 
 // Middleware
+// add slug
 recipeSchema.pre("save", function () {
     this.slug = slugify(this.name, {lower: true});
-
 });
+
+// delete children
+recipeSchema.post('findOneAndDelete', async function(recipe){
+    if (recipe.ingredients.length) {
+        await Ingredient.deleteMany({_id: {$in: recipe.ingredients}})
+    }
+})
 
 // Create Model
 const Recipe = mongoose.model('Recipe', recipeSchema);
