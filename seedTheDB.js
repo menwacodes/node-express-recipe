@@ -1,6 +1,8 @@
 const Recipe = require('./models/recipe');
 const Ingredient = require("./models/ingredient");
 const recipeSeeds = require('./seedRecipes');
+const ingredientSeeds = require('./seedIngredients');
+
 
 const mongoose = require('mongoose');
 const chalk = require('chalk');
@@ -29,20 +31,34 @@ const seedDB = async seeds => {
 
         // CREATE DATA FROM SEEDS
         // create recipes
-        const res = await Recipe.insertMany(seeds);
+        const results = await Recipe.insertMany(seeds);
+
 
         /* create ingredients
             loop through the recipes
             grab the id and the slug
             grab the ingredients that have the same slug
-            loop through the ingredients and
-              create an ingredient and add the recipe object id
-              for each newly created ingredient, grab the id and push into a temporary array
-              loop through the temporary array
-                update (push) the recipe's ingredient with the object ids
+                loop through the ingredients and
+                  create an ingredient and add the recipe object id
+                  for each newly created ingredient, grab the id and push into a temporary array
+                  loop through the temporary array
+                    update (push) the recipe's ingredient with the object ids
             */
 
-        console.log(res);
+        for (const result of results) {
+            let slug = result.slug;
+            // let id = result._id;
+            const ingredients = ingredientSeeds.ingredients.find(ing => ing.slug === slug)
+            console.log(ingredients.ingredients)
+            for (const ingredient of ingredients.ingredients) {
+                const newIngredient = new Ingredient({amount: ingredient["amount"], measure:ingredient["measure"], prep: ingredient["prep"], ingredient: ingredient["ingredient"]})
+                result.ingredients.push(newIngredient)
+                newIngredient.recipe = result
+
+                await result.save()
+                await newIngredient.save()
+            }
+        }
 
     } catch (err) {
         console.log(err);
