@@ -207,6 +207,7 @@ module.exports.recipes = [
             "Transfer to a wire rack to cool completely.",
         ],
         notes: [
+            "Warm milk can be substituted with milk powder and warm water",
             "Rise times can vary.",
             "First rise 1-3 hours, second rise 1-2 hours",
             "* 'A warm area' can be considered your oven with the door shut and the light on",

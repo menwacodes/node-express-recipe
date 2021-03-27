@@ -151,7 +151,7 @@ app.get('/recipes/:recipeId/ingredients/new', async (req, res) => {
     const {recipeId} = req.params;
     const recipe = await Recipe.findById(recipeId).populate('ingredients');
     // res.send({ingredients: recipe.ingredients, recipeId})
-    res.render('ingredients/new.ejs', {ingredients: recipe.ingredients, recipeId});
+    res.render('ingredients/new.ejs', {ingredients: recipe.ingredients, recipeId, recipeName: recipe.name});
 });
 
 // Create Ingredient

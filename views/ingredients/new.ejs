@@ -1,12 +1,12 @@
 <% layout('layouts/index')%>
 
-<h1>Ingredients</h1>
+<h1>Ingredients for <%= recipeName %></h1>
 
 <h2>Current Ingredients</h2>
 <ul>
     <% for (let ingredient of ingredients) { %>
         <li>
-            <span><%= ingredient.amount %></span>
+            <span tabindex=0><%= ingredient.amount %></span>
             <span><%= ingredient.measure %></span>
             <span><%= ingredient.prep %></span>
             <span><%= ingredient.ingredient %></span>
@@ -25,7 +25,7 @@
 <form action="/recipes/<%= recipeId ;%>/ingredients" method="post">
     <div>
         <label for="amount">Amount:</label>
-        <input type="number" name="amount" id="amount" placeholder="amount" step="0.01">
+        <input type="number" name="amount" id="amount" placeholder="amount" step="0.01" autofocus>
     </div>
     <div>
         <label for="measure">Measure:</label>
