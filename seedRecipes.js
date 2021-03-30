@@ -239,6 +239,31 @@ module.exports.recipes = [
             "Wok",
         ]
     },
+    {
+        slug: "air-fryer-fries",
+        name: "Air Fryer Fries",
+        yield: "1 serving",
+        course: "Sides",
+        prepTime: 25,
+        cookTime: 22,
+        activeTime: 8,
+        from: "Menwa",
+        directions: [
+            "Cut each potato lengthwise into 3/8-inch-thick slices. Slice sections into sticks also about 3/8 inch-wide.",
+            "Cover potatoes with water and let soak for 5 minutes to release excess starches. Drain and cover with boiling water by a few inches (or place in a bowl of boiling water). Let sit for 10 minutes.",
+            "Drain potatoes and transfer onto some paper towels. Blot off the excess water and let cool completely, at least 10 minutes. Transfer into a mixing bowl; drizzle with oil, season with cayenne, and toss to coat.",
+            "Preheat the air fryer to 390 °F (200 °C). Stack potatoes in a double layer in the fryer basket. Cook for 11 minutes. Slide basket out and toss fries; continue frying until golden brown, about 11 minutes more. Toss fries with salt in a mixing bowl. Serve immediately.",
+
+        ],
+        specialEquipment: [
+            "Air Fryer",
+        ],
+        notes: [
+            "I prefer to scrub the potatoes and leave the skins on, more vitamins I'm told.",
+            "Cayenne and salt are a guideline only, add stuff like garlic powder, oregano, whatever you'd like.",
+            "The oil is for the purposes of coating the potatoes to have the ingredients adhere and cook in the air fryer - do not over oil!"
+        ]
+    },
 ];
 
 /*

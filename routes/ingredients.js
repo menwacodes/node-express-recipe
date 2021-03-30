@@ -32,6 +32,8 @@ router.post('/', async (req, res) => {
     await recipe.save();
     await newIngredient.save();
 
+    req.flash('success', 'Created Ingredient')
+
     res.redirect(`/recipes/${recipe._id}/ingredients/new`);
 });
 
@@ -43,6 +45,8 @@ router.delete('/:ingredientId', async (req, res) => {
 
     // delete from ingredients
     await Ingredient.findByIdAndDelete(ingredientId);
+
+    req.flash('success', 'Deleted Ingredient')
 
     res.redirect(`/recipes/${recipeId}/ingredients/new`);
 });

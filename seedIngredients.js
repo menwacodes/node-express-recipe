@@ -510,4 +510,34 @@ module.exports.ingredients = [
             },
         ]
     },
+    {
+        slug: "air-fryer-fries",
+        ingredients: [
+            {
+                amount:1,
+                measure: "lb",
+                prep: "peeled",
+                ingredient: "russet potatoes",
+            },
+            {
+                amount: 2,
+                measure: "tsp",
+                prep: "",
+                ingredient: "canola oil",
+            },
+            {
+                amount: 1,
+                measure: "pinch",
+                prep: "",
+                ingredient: "cayenne pepper",
+            },
+            {
+                amount: 0.5,
+                measure: "tsp",
+                prep: "",
+                ingredient: "sea salt",
+            },
+
+        ]
+    },
 ];

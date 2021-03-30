@@ -63,7 +63,9 @@ router.post('/', async (req, res, next) => {
     newRecipe.notes = recipeTextAreaToArray(req.body.notes);
 
     const data = await newRecipe.save();
-    res.redirect(`/${newRecipe._id}`);
+
+    req.flash('success', 'Created Recipe, add ingredients')
+    res.redirect(`/recipes/${newRecipe._id}`);
 
 });
 
@@ -103,6 +105,8 @@ router.put('/:id', async (req, res) => {
 
     // Save Recipe
     await recipe.save();
+
+    req.flash('success', 'Updated Recipe')
 
     res.redirect(`/recipes/${recipe._id}`);
 });
