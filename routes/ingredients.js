@@ -8,7 +8,6 @@ const router = express.Router({mergeParams: true});
 
 // Create Ingredient Form
 router.get('/new', async (req, res) => {
-    console.log(req.params)
     const {recipeId} = req.params;
     const recipe = await Recipe.findById(recipeId).populate('ingredients');
     // res.send({ingredients: recipe.ingredients, recipeId})

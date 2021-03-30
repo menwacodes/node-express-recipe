@@ -13,7 +13,6 @@ router.get('/', function(req, res, next) {
 router.post('/ingredient', async (req, res) => {
     const {search} = req.body
     const results = await Ingredient.findByIngredient(search)
-    console.log(results)
     res.render('search/byIngredient', {results})
 })
 
