@@ -1,3 +1,4 @@
+const User = require("./models/user");
 const Recipe = require('./models/recipe');
 const Ingredient = require("./models/ingredient");
 const recipeSeeds = require('./seedRecipes');
@@ -29,6 +30,18 @@ const seedDB = async seeds => {
         await Recipe.deleteMany({});
         await Ingredient.deleteMany({})
 
+        await User.deleteMany({})
+
+        // CREATE USER MIKE
+        const mike = await new User({
+            name: 'menwa',
+            email: 'menwa.codes@gmail.com',
+            username: 'mike'
+        })
+
+        const registeredMike = await User.register(mike, process.env.MIKE_PASS)
+        const recipeOwnerId = registeredMike._id
+
         // CREATE DATA FROM SEEDS
         // create recipes
         const results = await Recipe.insertMany(seeds);
@@ -36,6 +49,8 @@ const seedDB = async seeds => {
         // create ingredients
         // loop through recipes
         for (const result of results) {
+            // update the mike owner
+            result.owner = recipeOwnerId;
             // grab the slug (common to both) and get the ingredients from array
             let slug = result.slug;
             const ingredients = ingredientSeeds.ingredients.find(ing => ing.slug === slug)

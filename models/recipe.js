@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+    const mongoose = require('mongoose');
 const slugify = require('slugify');
 const Ingredient = require("./ingredient");
 
@@ -30,6 +30,10 @@ const recipeSchema = new Schema({
             ref: 'Ingredient'
         }
     ],
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     prepBowls: [String],
     directions: [String],
     specialEquipment: [String],
