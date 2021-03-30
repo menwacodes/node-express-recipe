@@ -28,14 +28,15 @@ const coursesArray = Recipe.schema.path('course').enumValues;
 
 // routes
 const recipeRoutes = require('./routes/recipes')
+const ingredientRoutes = require('./routes/ingredients')
 app.use('/recipes', recipeRoutes)
+app.use('/recipes/:recipeId/ingredients', ingredientRoutes)
 
 
 /* local set up */
 const mURL = 'mongodb://localhost:27017/';
 const mDB = 'recipe';
 const mOptions = {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false};
-
 
 const connect = async () => {
     try {
@@ -66,58 +67,14 @@ const recipeArrayToTextArea = recipeArr => {
     if (recipeArr) return recipeArr.join('\r\n');
     // else return undefined;
 };
-
 /* END: Helper Functions */
 
-// RECIPE ROUTES
+
 // redirect for '/'
 app.get('/', (req, res) => {
     res.redirect('/recipes');
 });
 
-
-
-// INGREDIENT ROUTES
-// Create Ingredient Form
-app.get('/recipes/:recipeId/ingredients/new', async (req, res) => {
-    const {recipeId} = req.params;
-    const recipe = await Recipe.findById(recipeId).populate('ingredients');
-    // res.send({ingredients: recipe.ingredients, recipeId})
-    res.render('ingredients/new.ejs', {ingredients: recipe.ingredients, recipeId, recipeName: recipe.name});
-});
-
-// Create Ingredient
-app.post('/recipes/:recipeId/ingredients', async (req, res) => {
-    // Get Recipe
-    const {recipeId} = req.params;
-    const recipe = await Recipe.findById(recipeId);
-
-    // Get Ingredients from form and create object
-    const {amount, measure, prep, ingredient} = req.body;
-    const newIngredient = new Ingredient({amount, measure, prep, ingredient});
-
-    // Two way association
-    recipe.ingredients.push(newIngredient);
-    newIngredient.recipe = recipe;
-
-    // Save recipe and ingredient
-    await recipe.save();
-    await newIngredient.save();
-
-    res.redirect(`/recipes/${recipe._id}/ingredients/new`);
-});
-
-// Delete Ingredient
-app.delete('/recipes/:recipeId/ingredients/:ingredientId', async (req, res) => {
-    const {recipeId, ingredientId} = req.params;
-    // delete from recipe
-    await Recipe.findByIdAndUpdate(recipeId, {$pull: {ingredients: ingredientId}});
-
-    // delete from ingredients
-    await Ingredient.findByIdAndDelete(ingredientId);
-
-    res.redirect(`/recipes/${recipeId}/ingredients/new`);
-});
 
 // SEARCH ROUTES
 // Find by Ingredient
