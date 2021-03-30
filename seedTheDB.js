@@ -33,23 +33,13 @@ const seedDB = async seeds => {
         // create recipes
         const results = await Recipe.insertMany(seeds);
 
-
-        /* create ingredients
-            loop through the recipes
-            grab the id and the slug
-            grab the ingredients that have the same slug
-                loop through the ingredients and
-                  create an ingredient and add the recipe object id
-                  for each newly created ingredient, grab the id and push into a temporary array
-                  loop through the temporary array
-                    update (push) the recipe's ingredient with the object ids
-            */
-
+        // create ingredients
+        // loop through recipes
         for (const result of results) {
+            // grab the slug (common to both) and get the ingredients from array
             let slug = result.slug;
-            // let id = result._id;
             const ingredients = ingredientSeeds.ingredients.find(ing => ing.slug === slug)
-            console.log(ingredients.ingredients)
+            // loop through ingredients, create one, add to recipe, add recipe to ingredient (two way association), then save
             for (const ingredient of ingredients.ingredients) {
                 const newIngredient = new Ingredient({amount: ingredient["amount"], measure:ingredient["measure"], prep: ingredient["prep"], ingredient: ingredient["ingredient"]})
                 result.ingredients.push(newIngredient)
