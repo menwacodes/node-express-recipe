@@ -1,0 +1,22 @@
+<% layout('layouts/index'); %>
+
+<div class="d-flex justify-content-center">
+    <div class="w-50">
+        <h1>Login</h1>
+        <p class="lead">Only do this if you want to create your own recipes or store site recipes in your personal
+            recipe book.</p>
+        <p class="lead">You do not have to login to see recipes.</p>
+        <form action="/recipes/welcome/login" method="post" class="mt-5">
+            <div class="mb-3">
+                <label class="form-label" for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required placeholder="username">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required placeholder="password">
+            </div>
+
+            <button class="btn btn-outline-primary" type="submit">Login</button>
+        </form>
+    </div>
+</div>
