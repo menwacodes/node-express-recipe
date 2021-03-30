@@ -26,6 +26,10 @@ app.use(methodOverride('_method'));
 // enums
 const coursesArray = Recipe.schema.path('course').enumValues;
 
+// routes
+const recipeRoutes = require('./routes/recipes')
+app.use('/recipes', recipeRoutes)
+
 
 /* local set up */
 const mURL = 'mongodb://localhost:27017/';
@@ -58,92 +62,20 @@ const recipeTextAreaToArray = recipeTextArea => {
     else return undefined;
 };
 
+const recipeArrayToTextArea = recipeArr => {
+    if (recipeArr) return recipeArr.join('\r\n');
+    // else return undefined;
+};
+
+/* END: Helper Functions */
+
 // RECIPE ROUTES
 // redirect for '/'
 app.get('/', (req, res) => {
     res.redirect('/recipes');
 });
 
-// Index
-app.get('/recipes', async (req, res) => {
-    const recipes = await Recipe.find({});
-    res.render('recipes/index', {recipes});
-});
 
-// New (form)
-app.get('/recipes/new', (req, res) => {
-    res.render('recipes/new', {coursesArray});
-});
-
-// Show
-app.get('/recipes/:id', async (req, res) => {
-    const {id} = req.params;
-    const recipe = await Recipe.findById(id).populate('ingredients');
-    res.render('recipes/show', {recipe});
-});
-
-
-// Create
-app.post('/recipes', async (req, res, next) => {
-    // content from text areas: use .split('\r\n') to make an array, then map and push
-    const newRecipe = new Recipe(req.body);
-
-    // account for empty entries
-    newRecipe.prepBowls = recipeTextAreaToArray(req.body.prepBowls);
-    newRecipe.directions = recipeTextAreaToArray(req.body.directions);
-    newRecipe.specialEquipment = recipeTextAreaToArray(req.body.specialEquipment);
-    newRecipe.notes = recipeTextAreaToArray(req.body.notes);
-
-    const data = await newRecipe.save();
-    res.redirect(`/recipes/${newRecipe._id}`);
-
-});
-
-const recipeArrayToTextArea = recipeArr => {
-    if (recipeArr) return recipeArr.join('\r\n');
-    // else return undefined;
-};
-
-// Edit form
-app.get('/recipes/:id/edit', async (req, res) => {
-    // will need .join('\r\n')
-    // get the recipe by id and send up to form
-    const {id} = req.params;
-    const recipe = await Recipe.findById(id);
-
-    // convert stored array into text area presentable
-    recipe.prepBowls = recipeArrayToTextArea(recipe.prepBowls);
-    recipe.directions = recipeArrayToTextArea(recipe.directions);
-    recipe.specialEquipment = recipeArrayToTextArea(recipe.specialEquipment);
-    recipe.notes = recipeArrayToTextArea(recipe.notes);
-    res.render('recipes/edit', {recipe, coursesArray});
-});
-
-// Update Recipe
-app.put('/recipes/:id', async (req, res) => {
-    const {id} = req.params;
-    // Find the Recipe
-    const recipe = await Recipe.findById(id);
-
-    // Update the array fields
-    // account for empty entries
-    recipe.prepBowls = recipeTextAreaToArray(req.body.prepBowls);
-    recipe.directions = recipeTextAreaToArray(req.body.directions);
-    recipe.specialEquipment = recipeTextAreaToArray(req.body.specialEquipment);
-    recipe.notes = recipeTextAreaToArray(req.body.notes);
-
-    // Save Recipe
-    await recipe.save();
-
-    res.redirect(`/recipes/${recipe._id}`);
-});
-
-// Delete Recipe
-app.delete('/recipes/:id', async (req, res) => {
-    const {id} = req.params;
-    await Recipe.findByIdAndDelete(id);
-    res.redirect('/recipes');
-});
 
 // INGREDIENT ROUTES
 // Create Ingredient Form
