@@ -29,8 +29,10 @@ const coursesArray = Recipe.schema.path('course').enumValues;
 // routes
 const recipeRoutes = require('./routes/recipes')
 const ingredientRoutes = require('./routes/ingredients')
+const searchRoutes = require('./routes/search')
 app.use('/recipes', recipeRoutes)
 app.use('/recipes/:recipeId/ingredients', ingredientRoutes)
+app.use('/search', searchRoutes)
 
 
 /* local set up */
@@ -52,38 +54,9 @@ connect();
 
 /* END: Mongoose set up */
 
-/* Helper Functions - ToDo: move to separate file */
-/**
- *
- * @param recipeTextArea: req.body.textarea
- * @returns {undefined|array}
- */
-const recipeTextAreaToArray = recipeTextArea => {
-    if (recipeTextArea.length > 0) return recipeTextArea.split('\r\n');
-    else return undefined;
-};
-
-const recipeArrayToTextArea = recipeArr => {
-    if (recipeArr) return recipeArr.join('\r\n');
-    // else return undefined;
-};
-/* END: Helper Functions */
-
-
 // redirect for '/'
 app.get('/', (req, res) => {
     res.redirect('/recipes');
 });
-
-
-// SEARCH ROUTES
-// Find by Ingredient
-app.post('/search/ingredient', async (req, res) => {
-    // const {ingredient} = req.params;
-    const {search} = req.body
-    const results = await Ingredient.findByIngredient(search)
-    console.log(results)
-    res.render('search/byIngredient', {results})
-})
 
 app.listen(port, () => console.log(chalk.greenBright(`Listening on http://localhost:${port}`)));
