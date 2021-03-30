@@ -46,7 +46,9 @@ router.get('/new', (req, res) => {
 // Show
 router.get('/:id', async (req, res) => {
     const {id} = req.params;
-    const recipe = await Recipe.findById(id).populate('ingredients');
+    const recipe = await Recipe.findById(id)
+        .populate('ingredients')
+        .populate('owner');
     res.render('recipes/show', {recipe});
 });
 
@@ -56,6 +58,9 @@ router.post('/', async (req, res, next) => {
     // content from text areas: use .split('\r\n') to make an array, then map and push
     const newRecipe = new Recipe(req.body);
 
+    // add owner
+    newRecipe.owner = req.user._id
+
     // account for empty entries
     newRecipe.prepBowls = recipeTextAreaToArray(req.body.prepBowls);
     newRecipe.directions = recipeTextAreaToArray(req.body.directions);
@@ -64,7 +69,7 @@ router.post('/', async (req, res, next) => {
 
     const data = await newRecipe.save();
 
-    req.flash('success', 'Created Recipe, add ingredients')
+    req.flash('success', 'Created Recipe, add ingredients');
     res.redirect(`/recipes/${newRecipe._id}`);
 
 });
@@ -106,7 +111,7 @@ router.put('/:id', async (req, res) => {
     // Save Recipe
     await recipe.save();
 
-    req.flash('success', 'Updated Recipe')
+    req.flash('success', 'Updated Recipe');
 
     res.redirect(`/recipes/${recipe._id}`);
 });

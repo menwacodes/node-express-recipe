@@ -74,9 +74,6 @@ app.use('/recipes/:recipeId/ingredients', ingredientRoutes);
 app.use('/search', searchRoutes);
 app.use('/recipes/welcome', userRoutes)
 
-
-
-
 /* mongoose local set up */
 const mURL = 'mongodb://localhost:27017/';
 const mDB = 'recipe';
@@ -93,7 +90,6 @@ const connect = async () => {
 };
 
 connect();
-
 /* END: Mongoose set up */
 
 // redirect for '/'

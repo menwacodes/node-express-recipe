@@ -1,12 +1,13 @@
-<% layout('layouts/index')%>
+<% layout('layouts/index'); %>
 <h1><%= recipe.name; %></h1>
+<p class="text-muted">Submitted by: <%= recipe.owner.name %></p>
 
 <h2>Info</h2>
 <div>
     <% if (recipe.yield) { %> <span>Yield: <%= recipe.yield; %>, </span>
     <% } %>
 
-<% if (recipe.prepTime) { %> <span>Prep Time: <%= recipe.prepTime; %> min, </span>
+    <% if (recipe.prepTime) { %> <span>Prep Time: <%= recipe.prepTime; %> min, </span>
     <% } %>
 
     <% if (recipe.cookTime) { %>
@@ -88,11 +89,15 @@
     </div>
 <% } %>
 
-<a href="/recipes">Back to Recipes</a>
-<a href="/recipes/<%= recipe._id%>/edit">Edit Recipe</a>
-<a href="/recipes/<%= recipe._id%>/ingredients/new">Manage Ingredients</a>
+<a class="btn btn-primary" href="/recipes">Back to Recipes</a>
 
-<br><br>
-<form action="/recipes/<%= recipe._id %>?_method=DELETE" method="post">
-    <button>Delete Recipe</button>
-</form>
+<% if (currentUser && recipe.owner.equals(currentUser)) { %>
+    <a class="btn btn-info" href="/recipes/<%= recipe._id %>/edit">Edit Recipe</a>
+    <a class="btn btn-success" href="/recipes/<%= recipe._id %>/ingredients/new">Manage Ingredients</a>
+
+    <form action="/recipes/<%= recipe._id %>?_method=DELETE" method="post">
+        <button class="btn btn-danger my-3">Delete Recipe</button>
+    </form>
+<% } %>
+
+

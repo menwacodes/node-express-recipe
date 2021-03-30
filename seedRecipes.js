@@ -120,11 +120,7 @@ module.exports.recipes = [
             "Add a mix of vinegars, mostly red wine, and water",
             "Add remainder of ingredients",
             "Simmer for at least 30 min",
-            "Blend for 1 min",
-            "",
-            "",
-            "",
-            "",
+            "Blend for 1 min"
         ],
         notes: [
             "You'll need 2 500mL mason jars to put the sauce in",

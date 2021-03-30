@@ -1,4 +1,6 @@
-    const mongoose = require('mongoose');
+// TODO: directions, active time cannot be empty
+
+const mongoose = require('mongoose');
 const slugify = require('slugify');
 const Ingredient = require("./ingredient");
 
@@ -48,11 +50,11 @@ recipeSchema.pre("save", function () {
 });
 
 // delete children
-recipeSchema.post('findOneAndDelete', async function(recipe){
+recipeSchema.post('findOneAndDelete', async function (recipe) {
     if (recipe.ingredients.length) {
-        await Ingredient.deleteMany({_id: {$in: recipe.ingredients}})
+        await Ingredient.deleteMany({_id: {$in: recipe.ingredients}});
     }
-})
+});
 
 // Create Model
 const Recipe = mongoose.model('Recipe', recipeSchema);

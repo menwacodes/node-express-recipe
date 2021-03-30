@@ -10,7 +10,8 @@ const chalk = require('chalk');
 
 const mURL = 'mongodb://localhost:27017/';
 const mDB = 'recipe';
-const mOptions = {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false};
+const mOptions = {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true};
+
 
 const connect = async () => {
     try {
