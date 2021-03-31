@@ -55,7 +55,7 @@ const express = require('express');
 const Recipe = require("./models/recipe");
 const Ingredient = require("./models/ingredient");
 const app = express();
-const port = process.env.port;
+const port = process.env.PORT;
 
 // view engine setup
 app.engine('ejs', ejsMate);
