@@ -6,10 +6,11 @@ const ejsMate = require('ejs-mate');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 
+
 let mongoUri = process.env.MONGO_ATLAS_URI;
-const mURL = 'mongodb://localhost:27017/';
-const mDB = 'recipe';
-mongoUri = mURL + mDB;
+// const mURL = 'mongodb://localhost:27017/';
+// const mDB = 'recipe';
+// mongoUri += mDB;
 
 const flash = require('connect-flash');
 
