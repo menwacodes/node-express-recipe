@@ -6,10 +6,11 @@ const ejsMate = require('ejs-mate');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 
+
 let mongoUri = process.env.MONGO_ATLAS_URI;
-const mURL = 'mongodb://localhost:27017/';
-const mDB = 'recipe';
-mongoUri = mURL + mDB;
+// const mURL = 'mongodb://localhost:27017/';
+// const mDB = 'recipe';
+// mongoUri += mDB;
 
 const flash = require('connect-flash');
 
@@ -54,7 +55,7 @@ const express = require('express');
 const Recipe = require("./models/recipe");
 const Ingredient = require("./models/ingredient");
 const app = express();
-const port = process.env.port || 3000;
+const port = process.env.port;
 
 // view engine setup
 app.engine('ejs', ejsMate);
