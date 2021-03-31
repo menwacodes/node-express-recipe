@@ -25,6 +25,5 @@
     "passport-local-mongoose": "^6.1.0",
     "slugify": "^1.5.0",
     "chalk": "^4.1.0"
-  },
-
+  }
 }
