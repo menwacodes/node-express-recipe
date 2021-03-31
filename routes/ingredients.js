@@ -3,6 +3,8 @@ const express = require('express');
 const Recipe = require("../models/recipe");
 const methodOverride = require('method-override');
 const Ingredient = require("../models/ingredient");
+const {isLoggedIn} = require("../middleware");
+const {isIngredientOwner} = require("../middleware");
 const router = express.Router({mergeParams: true});
 
 
@@ -15,7 +17,7 @@ router.get('/new', async (req, res) => {
 });
 
 // Create Ingredient
-router.post('/', async (req, res) => {
+router.post('/', isLoggedIn, async (req, res) => {
     // Get Recipe
     const {recipeId} = req.params;
     const recipe = await Recipe.findById(recipeId);
@@ -38,13 +40,13 @@ router.post('/', async (req, res) => {
 });
 
 // Delete Ingredient
-router.delete('/:ingredientId', async (req, res) => {
-    const {recipeId, ingredientId} = req.params;
+router.delete('/:id', isIngredientOwner,  async (req, res) => {
+    const {recipeId, id} = req.params;
     // delete from recipe
-    await Recipe.findByIdAndUpdate(recipeId, {$pull: {ingredients: ingredientId}});
+    await Recipe.findByIdAndUpdate(recipeId, {$pull: {ingredients: id}});
 
     // delete from ingredients
-    await Ingredient.findByIdAndDelete(ingredientId);
+    await Ingredient.findByIdAndDelete(id);
 
     req.flash('success', 'Deleted Ingredient')
 

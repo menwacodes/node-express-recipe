@@ -1,6 +1,7 @@
 const express = require('express');
 const Recipe = require("../models/recipe");
 const methodOverride = require('method-override');
+const {isLoggedIn, isOwner} = require('../middleware')
 
 // prefix /recipes
 
@@ -39,7 +40,7 @@ router.get('/', async (req, res) => {
 });
 
 // New (form)
-router.get('/new', (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
     res.render('recipes/new', {coursesArray});
 });
 
@@ -54,7 +55,7 @@ router.get('/:id', async (req, res) => {
 
 
 // Create
-router.post('/', async (req, res, next) => {
+router.post('/', isLoggedIn, async (req, res, next) => {
     // content from text areas: use .split('\r\n') to make an array, then map and push
     const newRecipe = new Recipe(req.body);
 
@@ -75,7 +76,7 @@ router.post('/', async (req, res, next) => {
 });
 
 // Edit form
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit', isLoggedIn, isOwner, async (req, res) => {
     // will need .join('\r\n')
     // get the recipe by id and send up to form
     const {id} = req.params;
@@ -90,7 +91,7 @@ router.get('/:id/edit', async (req, res) => {
 });
 
 // Update Recipe
-router.put('/:id', async (req, res) => {
+router.put('/:id', isLoggedIn, isOwner, async (req, res) => {
     const {id} = req.params;
     // Find the Recipe
     const recipe = await Recipe.findById(id);
@@ -117,7 +118,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete Recipe
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', isLoggedIn, isOwner, async (req, res) => {
     const {id} = req.params;
     await Recipe.findByIdAndDelete(id);
     res.redirect('/recipes');
