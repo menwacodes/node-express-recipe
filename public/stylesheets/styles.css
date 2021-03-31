@@ -1,0 +1,24 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+/* Recipe Styles */
+.recipe-list {
+  list-style: none;
+}
+
+.recipe-list-item {
+  margin-bottom: 0.75em;
+}
+
+.recipe-show-subtitle {
+  margin-top: 0.75em;
+}
+
+.recipe-show-list li {
+  margin-bottom: 0.25em
+}

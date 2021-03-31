@@ -1,10 +1,14 @@
-<% layout('layouts/index')%>
+<% layout('layouts/index') %>
 
-    <h1>Recipes</h1>
-    <ul>
-      <% for (let recipe of recipes) { %>
-          <li><a href="/recipes/<%=recipe._id%>"><%= recipe.name %></a></li>
-      <% } %>
-    </ul>
+<h1>Recipes</h1>
+<ul class="recipe-list">
+    <% for (let recipe of recipes) { %>
+    <li class="recipe-list-item">
+        <a href="/recipes/<%= recipe._id %>"><%= recipe.name %></a>
+    </li>
+    <% } %>
+</ul>
 
-    <a href="/recipes/new">Add Recipe</a>
+<% if (currentUser) { %>
+    <a class="btn btn-outline-dark" href="/recipes/new">Add Recipe</a>
+<% } %>

@@ -2,7 +2,7 @@
 <h1><%= recipe.name; %></h1>
 <p class="text-muted">Submitted by: <%= recipe.owner.name %></p>
 
-<h2>Info</h2>
+<h2 class="recipe-show-subtitle">Info</h2>
 <div>
     <% if (recipe.yield) { %> <span>Yield: <%= recipe.yield; %>, </span>
     <% } %>
@@ -26,8 +26,8 @@
     </span>
 </div>
 
-<h2>Ingredients</h2>
-<ul>
+<h2 class="recipe-show-subtitle">Ingredients</h2>
+<ul class="recipe-show-list">
     <% for (let ingredient of recipe.ingredients) { %>
         <li>
             <span><%= ingredient.amount %></span>
@@ -40,8 +40,8 @@
 
 
 <% if (recipe.prepBowls.length) { %>
-    <h2>Prep Bowls</h2>
-    <ul>
+    <h2 class="recipe-show-subtitle">Prep Bowls</h2>
+    <ul class="recipe-show-list">
         <% for (let bowl of recipe.prepBowls) { %>
             <li><%= bowl; %></li>
         <% } %>
@@ -49,16 +49,16 @@
 <% } %>
 
 
-<h2>Directions</h2>
-<ol>
+<h2 class="recipe-show-subtitle">Directions</h2>
+<ol class="recipe-show-list">
     <% for (let direction of recipe.directions) { %>
         <li><%= direction; %></li>
     <% } %>
 </ol>
 
 <% if (recipe.specialEquipment.length) { %>
-    <h2>Special Equipment</h2>
-    <ul>
+    <h2 class="recipe-show-subtitle">Special Equipment</h2>
+    <ul class="recipe-show-list">
         <% for (let equipment of recipe.specialEquipment) { %>
             <li><%= equipment; %></li>
         <% } %>
@@ -66,8 +66,8 @@
 <% } %>
 
 <% if (recipe.notes.length) { %>
-    <h2>Notes</h2>
-    <ul>
+    <h2 class="recipe-show-subtitle">Notes</h2>
+    <ul class="recipe-show-list">
         <% for (let note of recipe.notes) { %>
             <li><%= note; %></li>
         <% } %>
@@ -75,7 +75,7 @@
 <% } %>
 
 <% if(recipe.from || recipe.attribution) { %>
-    <h2>Attribution</h2>
+    <h2 class="recipe-show-subtitle">Attribution</h2>
     <div>
         <% if (recipe.from && recipe.fromURL) { %>
             <p>From: <a href="<%= recipe.fromURL; %>" target="_blank"><%= recipe.from; %></a></p>
