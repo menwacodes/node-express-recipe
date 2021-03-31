@@ -135,6 +135,10 @@ app.use('/recipes/:recipeId/ingredients', ingredientRoutes);
 app.use('/search', searchRoutes);
 app.use('/recipes/welcome', userRoutes);
 
+app.get('/', (req, res) => {
+    res.redirect('/recipes')
+})
+
 /* mongoose local set up
     comment out and use variable from top if using cloud
 * */
