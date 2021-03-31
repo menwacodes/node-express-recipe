@@ -54,7 +54,7 @@ const express = require('express');
 const Recipe = require("./models/recipe");
 const Ingredient = require("./models/ingredient");
 const app = express();
-const port = 3000;
+const port = process.env.port || 3000;
 
 // view engine setup
 app.engine('ejs', ejsMate);
@@ -161,4 +161,4 @@ app.get('/', (req, res) => {
     res.redirect('/recipes');
 });
 
-app.listen(port, () => console.log(chalk.greenBright(`Listening on http://localhost:${port}`)));
+app.listen(port, () => console.log(chalk.greenBright(`Listening on port :${port}`)));
