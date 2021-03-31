@@ -540,4 +540,148 @@ module.exports.ingredients = [
 
         ]
     },
+    {
+        slug: "sandys-wings",
+        ingredients: [
+            {
+                amount: 3,
+                measure: "cloves",
+                prep: "crushed",
+                ingredient: "garlic",
+            },
+            {
+                amount: 3,
+                measure: "tbsp",
+                prep: "cracked",
+                ingredient: "peppercorns",
+            },
+            {
+                amount: 2,
+                measure: "tsp",
+                prep: "",
+                ingredient: "sea salt",
+            },
+            {
+                amount: 1.5,
+                measure: "tsp",
+                prep: "",
+                ingredient: "Maggi Seasoning (or Worstershire Sauce)",
+            },
+            {
+                amount: 0.5,
+                measure: "tsp",
+                prep: "",
+                ingredient: "dry mustard",
+            },
+            {
+                amount: 0.25,
+                measure: "cup",
+                prep: "",
+                ingredient: "Tarragon vinegar",
+            },
+            {
+                amount: 1.33,
+                measure: "cup",
+                prep: "",
+                ingredient: "vegetable oil",
+            },
+            {
+                amount: 3,
+                measure: "lbs",
+                prep: "",
+                ingredient: "chicken wings, cut at the joint (wing tips removed) or those neat little drumsticks at Loblaws called 'drumettes'",
+            },
+
+
+        ]
+    },
+    {
+        slug: "potato-and-meat-hash",
+        ingredients: [
+            {
+                amount: 1.5,
+                measure: "lbs",
+                prep: "cubed (1/2 inch)",
+                ingredient: "russet or Yukon potatoes",
+            },
+            {
+                amount: 2,
+                measure: "tbsp",
+                prep: "",
+                ingredient: "distilled white vinegar",
+            },
+            {
+                amount: 1,
+                measure: "tsp",
+                prep: "",
+                ingredient: "sea salt",
+            },
+            {
+                amount: 4,
+                measure: "oz",
+                prep: "diced",
+                ingredient: "Spanish chorizo",
+            },
+            {
+                amount: 0.25,
+                measure: "cup",
+                prep: "",
+                ingredient: "canola oil",
+            },
+            {
+                amount: 0.5,
+                measure: "tsp",
+                prep: "ground",
+                ingredient: "cumin",
+            },
+            {
+                amount: 0.25,
+                measure: "tsp",
+                prep: "ground",
+                ingredient: "paprika",
+            },
+            {
+                amount: 0.5,
+                measure: "tsp",
+                prep: "ground",
+                ingredient: "peppercorns",
+            },
+            {
+                amount: 6,
+                measure: "",
+                prep: "cut (1 inch)",
+                ingredient: "green onions",
+            },
+            {
+                amount: 1,
+                measure: "",
+                prep: "diced (1/2 inch)",
+                ingredient: "poblano pepper",
+            },
+            {
+                amount: 4,
+                measure: "",
+                prep: "",
+                ingredient: "eggs",
+            },
+            {
+                amount: 0.25,
+                measure: "cup",
+                prep: "roughly chopped",
+                ingredient: "fresh cilantro leaves",
+            },
+            {
+                amount: 1,
+                measure: "half",
+                prep: "small diced",
+                ingredient: "avocado",
+            },
+            {
+                amount: 0.5,
+                measure: "cup",
+                prep: "homemade",
+                ingredient: "salsa",
+            },
+        ]
+    },
 ];

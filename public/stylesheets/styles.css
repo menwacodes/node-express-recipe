@@ -22,3 +22,11 @@ a {
 .recipe-show-list li {
   margin-bottom: 0.25em
 }
+
+main {
+  margin-bottom: 5rem;
+}
+
+footer {
+  margin-top: 3rem;
+}

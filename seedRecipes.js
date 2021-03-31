@@ -260,6 +260,71 @@ module.exports.recipes = [
             "The oil is for the purposes of coating the potatoes to have the ingredients adhere and cook in the air fryer - do not over oil!"
         ]
     },
+    {
+        slug: "sandys-wings",
+        name: "Sandy's Wings",
+        yield: "4 servings",
+        course: "Sides",
+        prepTime: 15,
+        cookTime: 35,
+        activeTime: 20,
+        marinateTime: 60,
+        from: "Menwa",
+        directions: [
+            "Put everything except the vegetable oil in a bowl and stir with a whisk.",
+            "After it's blended together, slowly add the vegetable oil while mixing the other stuff.",
+            "Put the chicken wings in a bowl and pour this mixture over them. Let them sit at room temperature for 1 hour or in the fridge for 24 hours.",
+            "Set oven to 475 degrees. Transfer wings, skin side up in a single layer on a large baking pan or two. Don't shove them too close together.  Might be a good idea to grease the pans first.",
+            "Bake for 30 minutes or until your kitchen smells like Colonel Sanders' test kitchen. ",
+            "Throw them onto a paper towel to drain off 9 or 10 gallons of the fat.  (At this point you can refrigerate overnight).",
+            "Then broil 2 inches from the element for 3-4 minutes until the skin is nice and crisp.",
+        ],
+        notes: [
+            "Should serve 8 as an hors d'oeuvre or 1 menwa"
+        ]
+    },
+    {
+        slug: "potato-and-meat-hash",
+        name: "Potato and Meat Hash",
+        yield: "4 servings",
+        course: "Mains",
+        prepTime: 10,
+        cookTime: 30,
+        activeTime: 40,
+        from: 'Serious Eats',
+        fromURL: "https://www.seriouseats.com/recipes/2014/04/crispy-potato-and-chorizo-hash-recipe.html",
+        attribution: 'J. Kenji López-Alt',
+        directions: [
+            "Preheat oven to 375°F.",
+            "Place potatoes in a large saucepan and cover with 2 quarts cold water.",
+            "Add vinegar and 2 tablespoons sea salt, bring to a boil over high heat",
+            "Reduce to a simmer and cook until barely tender, about 5 minutes after coming to a boil.",
+            "Drain potatoes in a colander and let drain for 2 minutes.",
+            "Meanwhile, place chorizo chunks in a cast iron skillet and place over medium heat.",
+            "Cook, stirring, until chorizo is crisp on all sides and fat has rendered out, about 10 minutes total.",
+            "Remove chorizo with a slotted spoon to a large bowl, leaving fat in skillet. Set chorizo aside.",
+            "When potatoes are drained, add 3 tablespoons oil to skillet and heat over medium-high heat until shimmering.",
+            "Add drained potatoes and cook, stirring and tossing occasionally, until potatoes are deep brown and crisp on all sides, about 20 minutes total.",
+            "Add cumin and paprilka and cook, stirring, until fragrant, about 30 seconds.",
+            "Season to taste with salt and pepper. Transfer potatoes to bowl with chorizo and set aside.",
+            "Add remaining tablespoon oil to skillet and heat over high heat until shimmering.",
+            "Add scallion whites and light greens and poblano and cook, stirring occasionally, until charred, about 2 minutes.",
+            "Season to taste with salt and pepper then transfer to bowl with potatoes and chorizo. Toss contents of bowl and return to skillet.",
+            "Make 4 wells in potato mixture.",
+            "Carefully break 1 egg into a small bowl and slide into a fine mesh strainer over the sink.",
+            "Swirl egg very gently until excess loose white drains away.",
+            "Carefully add to one of the cavities in the skillet. Repeat with remaining three eggs.",
+            "Drizzle eggs with a few drops of oil, season with salt and pepper, and transfer to oven.",
+            "Cook until whites are barely set but yolks are still runny, about 10 minutes. Remove from oven, garnish with sliced scallion greens, chopped cilantro, and avocado.",
+            "Serve.",
+        ],
+        notes: [
+            "The key to success is cooking everything separately, then adding to a large bowl before putting back into pan to make wells.",
+            "If you have an air fryer, you can cook the potatoes there as they will hold together much better.",
+        ],
+        specialEquipment: ['Cast Iron Pan']
+    },
+
 ];
 
 /*

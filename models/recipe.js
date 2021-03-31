@@ -44,9 +44,14 @@ const recipeSchema = new Schema({
 });
 
 // Middleware
-// add slug
+// add slug and remove weird characters
 recipeSchema.pre("save", function () {
-    this.slug = slugify(this.name, {lower: true});
+    this.slug = slugify(this.name,
+        {
+            lower: true,
+            remove: /[*+~.()'"!:@]/g
+        }
+        );
 });
 
 // delete children

@@ -3,15 +3,12 @@
 <h1>Search Results</h1>
 
 <% if (results.length) { %>
- <ul>
+ <ul class="recipe-list">
     <% for (let result of results) { %>
-        <li><a href="/recipes/<%= result.recipe._id %>"><%= result.recipe.name %></a></li>
+        <li class="recipe-list-item"><a href="/recipes/<%= result.recipe._id %>"><%= result.recipe.name %></a></li>
     <% } %>
 </ul>
 <% } else { %>
     <p>No results for your search term</p>
 <% } %>
 
-
-</body>
-</html>
